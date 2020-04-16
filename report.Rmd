@@ -3,7 +3,8 @@ title: "Report on Gun Murders"
 author: "Eric Penseel"
 date: "4/16/2020"
 output:
-  html_document
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
