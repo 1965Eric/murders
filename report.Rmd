@@ -9,22 +9,29 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Introduction
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+This is a report on 2010 gun murder rates obtained from FBI reports. The original data was obtained from [this Wikipedia page](https://en.wikipedia.org/wiki/Murder_in_the_United_States_by_state).
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+We are going to use the following library:
 
-```{r cars}
-summary(cars)
+```{r loading-libs, message=FALSE}
+library(tidyverse)
+```
+  
+and load the data we already wrangled:
+
+```{r}
+load("rdas/murders.rda")
 ```
 
-## Including Plots
+## Murder rate by state 
 
-You can also embed plots, for example:
+We note the large state to state variability by generating a barplot showing the murder rate by state:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r murder-rate-by-state, echo=FALSE}
+murders %>% mutate(abb = reorder(abb, rate)) %>%
+  ggplot(aes(abb, rate)) +
+  geom_bar(width = 0.5, stat = "identity", color = "black") +
+  coord_flip()
 ```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
