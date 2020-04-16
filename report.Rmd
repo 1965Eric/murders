@@ -3,7 +3,7 @@ title: "Report on Gun Murders"
 author: "Eric Penseel"
 date: "4/16/2020"
 output:
-  github_document
+  html_document
 ---
 
 ```{r setup, include=FALSE}
